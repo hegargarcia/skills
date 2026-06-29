@@ -15,6 +15,7 @@ npx skills add HegarGarcia/skills
 | Skill | What it does |
 | --- | --- |
 | [`showrunner`](skills/showrunner/SKILL.md) | Product-led, multi-agent workflow that delivers a single Linear ticket end to end — plan with the human, then build, test, review, document, and open reviewable PRs. |
+| [`personal-code-style`](skills/personal-code-style/SKILL.md) | Hegar's cross-repo coding-style preferences — applied silently as a guardrail whenever code, tests, schemas, or migrations are written, refactored, or reviewed. |
 
 ## Layout
 
