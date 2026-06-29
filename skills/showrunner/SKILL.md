@@ -1,6 +1,6 @@
 ---
 name: showrunner
-description: Deliver a single Linear ticket end to end: plan, build, test, review, document, and open reviewable PRs. Use whenever the user wants to implement, ship, build, or deliver a Linear ticket — e.g. "implement FON-1730", "let's work this ticket", or just pasting a ticket ID/link — even if they don't name the workflow.
+description: Deliver a single Linear ticket end to end — plan, build, test, review, document, and open reviewable PRs. Use whenever the user wants to implement, ship, build, or deliver a Linear ticket — e.g. "implement FON-1730", "let's work this ticket", or just pasting a ticket ID/link — even if they don't name the workflow.
 ---
 
 # Product-led ticket delivery
