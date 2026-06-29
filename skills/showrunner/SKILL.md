@@ -62,7 +62,12 @@ You review the final diff against the plan and acceptance criteria, then bring i
 After sign-off, deliver the work as the stack of reviewable PRs planned at Gate 1 (see `references/pr-standards.md`):
 - The **Engineer** does the mechanical packaging — cuts the agreed plain stacked branches, splits the diff/commits along the planned seams, and opens each PR against its base. This is plumbing, not product input.
 - **You (Product)** write and own each PR **description**, framed around impact to ux/business/platform, not the code diff. Pull only the bare facts you need from the Engineer — the framing is yours.
-- Post the PR links to Linear and move the ticket to its review/done state.
+- Post the PR links to Linear and move the ticket to its in-review state.
+
+### After delivery — Respond to review feedback (loop until merged)
+Open PRs draw feedback — from an automated reviewer (e.g. Greptile), a human reviewer, or direct feedback in chat. Handle all of it through one **source-agnostic feedback loop** (see `references/feedback-loop.md`): collect each item, **triage** it (ground against the real code, then Accept / Adapt / Decline / Escalate), **address** the accepted/adapted ones, then **respond and close out** every item (reply with the outcome, mark it resolved in its channel, and verify it stuck). Repeat as new feedback lands.
+
+You make the **initial call** on the first round's triage; after that the loop **runs autonomously** — collect, fix, respond, resolve — pausing only to flag an escalation. Severity sets urgency, not auto-action: even a low-severity item is grounded before acting, and a wrong-premise or out-of-scope item is declined with a reason rather than applied. When the stack is approved and merged, move the ticket to its **done** state.
 
 ## Communication & oversight
 
@@ -71,6 +76,7 @@ Sub-agents may communicate **directly** with each other within their loops (e.g.
 - An implementation choice would change product behavior, scope, or the agreed plan (**product drift**).
 - Engineer and Code Review can't agree, or Code Review is unsure of the right path.
 - The acceptance criteria are ambiguous or under-specified.
+- Review feedback conflicts with a repo/user rule, or is a contested judgment call.
 - A blocker appears.
 
 If a sub-agent starts heading somewhere the plan didn't sanction, stop it.
@@ -95,8 +101,8 @@ When you do edit, follow the edit policy, preserve the invariants, and record th
 - Post the approved plan as a comment before implementation (Gate 1).
 - Move to `In Progress` when the Engineer is spawned.
 - If blocked, leave a clear comment with the blocker and current state.
-- Post the PR-stack links as a comment once the PRs are opened (Gate 3).
-- Move to the review/done state once the PRs are opened (Gate 3).
+- Post the PR-stack links as a comment once the PRs are opened (Gate 3), and move the ticket to in-review.
+- Work the feedback loop until the stack is approved; move to the done state once it's merged.
 
 ## Severity labels (shared)
 Functional QA bugs, Code Review findings, and Documentation issues all use these (each brief restates them, since role agents start cold):
@@ -117,4 +123,5 @@ Each role's full brief is a self-contained file under `agents/`. When you spawn 
 ## References
 - `references/self-improvement.md` — triage rubric, edit policy, invariants, and changelog format. Read before editing the skill.
 - `references/pr-standards.md` — how to slice work into reviewable PRs and write impact-focused descriptions (Gates 1 and 3).
+- `references/feedback-loop.md` — source-agnostic loop for triaging and responding to review feedback (after delivery).
 - `CHANGELOG.md` — record of every self-improvement change, newest first.

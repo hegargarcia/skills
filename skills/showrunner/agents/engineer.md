@@ -24,3 +24,6 @@ On each handoff, summarize: what changed (files + brief rationale), how it maps 
 
 ## At delivery (packaging)
 Once the ticket is signed off, package the work into the PR stack the plan defined: plain stacked branches, sliced along the agreed seams, each PR opened against its base. This is **mechanical** — you cut the branches and open the PRs, but you do **not** write the PR descriptions. The Product agent owns those (framed around impact, not the diff); give it only the bare facts it asks for. See `references/pr-standards.md`.
+
+## Responding to review feedback
+Once PRs are open, you handle the mechanics of the feedback loop (see `references/feedback-loop.md`): for the items triage accepts or adapts, make the fix, run the usual verification, and re-push; then post the outcome on each item (fixed / adapted-with-reason / declining-with-reason) and resolve the thread, confirming it actually resolved. You do the fixes, factual replies, and close-out; the Product agent owns declining/pushback wording and any escalated judgment call.

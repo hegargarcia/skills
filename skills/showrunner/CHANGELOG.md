@@ -2,6 +2,12 @@
 
 Newest first. See `references/self-improvement.md` for when and how to add entries.
 
+## 2026-06-29 — Feedback loop: triage and respond to review feedback
+- **Feedback:** after PRs open, most of a delivery's remaining work was fetching review comments (mainly from Greptile) and addressing them — that flow was missing from the skill. It should be **source-agnostic** (PR bot, human reviewer, or direct chat feedback all take the same flow), run **autonomously after the human's initial call** (flagging only escalations), and the ticket's done-state should be **merge, not PR-open**. (Reconstructed from the FON-1727 delivery thread.)
+- **Triage:** operational — handling post-delivery review feedback was an unwritten part of the lifecycle.
+- **Change:** added `references/feedback-loop.md` — a generic loop (collect → triage [Accept/Adapt/Decline/Escalate; ground-first; repo/user rules beat suggestions; severity = urgency not auto-action] → address → respond + resolve + verify; autonomous after the initial call). `SKILL.md`: added an "After delivery — Respond to review feedback" stage, shifted the ticket done-state from PR-open to **merged** (Gate 3 + Linear hygiene), added a feedback-rule-conflict escalation trigger to oversight, and linked the new reference. `agents/engineer.md`: noted the Engineer's address + close-out mechanics during the loop.
+- **Approval:** approved by hegar (this session). Decisions settled with the human: comment-loop scope only; source-agnostic; autonomous-after-initial-call; done = merged.
+
 ## 2026-06-29 — Tightened the skill description
 - **Feedback:** the `description` was too long and explained the skill's inner workings instead of just signaling when to trigger.
 - **Triage:** operational — the description's only job is triggering; how-it-works detail belongs in the body.
