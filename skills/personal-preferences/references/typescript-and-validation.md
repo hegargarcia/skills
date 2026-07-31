@@ -6,6 +6,7 @@
 - Prefer `as const` for small stable object shapes over noisy return annotations.
 - Infer domain and boundary types from focused producers or define the fields the contract owns; do not use an ORM table's entire inferred row type as the contract.
 - Extract a small generic when several aliases repeat the same nested type operation.
+- Type derived collections from their inferred source values instead of declaring an interface that merely restates the producer's result.
 - Trust TypeScript inside typed functions. Do not revalidate data already owned by a typed internal contract.
 - Use a type guard or boundary schema before a cast. Treat casting as a last resort.
 - When a framework mismatch requires a cast, cast the exact incompatible expression while preserving contextual typing for the surrounding callback.
@@ -19,6 +20,7 @@
 - Do not defensively revalidate trusted internal responses; type the contract and trust it.
 - Let malformed known contracts fail validation instead of hiding them behind defaults, unless fallback behavior is part of the contract.
 - Keep shared identifier validation with the package that owns the identifier format.
+- Express reusable validation contracts as schemas rather than exporting raw regular-expression constants as the contract.
 - Define a shared boundary once when client and server consumers interpret the same inputs; derive their framework adapters from that contract.
 
 ## Zod

@@ -9,7 +9,9 @@
 ## Product and feature documentation
 
 - Treat product docs as current-state reference material, not as a decision log.
+- Apply feedback by improving the artifact; do not transcribe review wording or negative instructions into the artifact as content.
 - State present behavior and invariants directly. Keep migration decisions, rollout sequencing, deferred work, and historical behavior in issues or pull requests.
+- Make code-adjacent docs, docstrings, schema descriptions, and prompts describe their current intended use. Omit future plans, transition notes, and incidental implementation facts that do not help the reader.
 - Group rules by the reader's question or lifecycle area. Use tables when states or categories scan more clearly than prose.
 - Keep transport formats and provider-specific mechanics out of the product mental model. Put them in integration docs or implementation notes.
 

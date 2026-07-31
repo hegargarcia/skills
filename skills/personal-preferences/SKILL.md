@@ -25,6 +25,7 @@ Do not use this skill to override safety requirements, product decisions, or del
 - Model real concepts, ownership, and boundaries instead of papering over them with convenient stand-ins.
 - Respect established local patterns before introducing something novel.
 - Keep scope and diffs small; avoid speculative completeness and incidental cleanup.
+- Preserve the purpose of an existing artifact when changing its implementation or vocabulary.
 - Trust strong types and contracts; validate at real runtime boundaries.
 - Add abstractions only when they remove meaningful complexity or duplication.
 - Verify in proportion to risk and provide concrete evidence for behavior that benefits from it.
@@ -37,6 +38,7 @@ Read every reference whose scope materially applies before acting. Do not load u
 - For naming, abstraction, control flow, architecture, project structure, or UI code, read [code.md](./references/code.md).
 - For TypeScript types, errors, runtime boundaries, or Zod, read [typescript-and-validation.md](./references/typescript-and-validation.md).
 - For Drizzle, SQL, schemas, migrations, transactions, or database mapping, read [data-and-databases.md](./references/data-and-databases.md).
+- For GraphQL schemas, resolvers, codegen mappers, or DataLoader, read [graphql-and-dataloaders.md](./references/graphql-and-dataloaders.md).
 - For test selection, test shape, checks, or behavioral proof, read [testing-and-verification.md](./references/testing-and-verification.md).
 - For dependencies, runtimes, environment configuration, Git, diffs, commits, or pull-request mechanics, read [tooling-and-delivery.md](./references/tooling-and-delivery.md).
 - For product docs, technical explanations, or pull-request prose, read [writing-and-docs.md](./references/writing-and-docs.md).
@@ -57,9 +59,10 @@ When feedback qualifies:
 1. Find the closest topical reference.
 2. Sharpen an existing rule instead of adding another whenever possible.
 3. Generalize away repository, product, and incident-specific names.
-4. Reconcile conflicting guidance immediately; do not preserve both positions.
-5. Add an example only when the preference would otherwise remain ambiguous.
-6. Create a new reference only after a distinct topic has enough durable guidance to earn one.
+4. Record the distilled preference, not the feedback wording, review history, or provenance.
+5. Reconcile conflicting guidance immediately; do not preserve both positions.
+6. Add an example only when the preference would otherwise remain ambiguous.
+7. Create a new reference only after a distinct topic has enough durable guidance to earn one.
 
 Do not record product direction, isolated bugs, temporary workarounds, historical narration, or conventions that belong to one repository. Do not keep a raw feedback diary; let repetition establish ambiguous feedback as durable.
 
