@@ -2,6 +2,38 @@
 
 Newest first. See `references/self-improvement.md` for when and how to add entries.
 
+## 2026-07-31 — Review pass: relay model, spawn mechanics, verification gate, slicing criterion
+- **Feedback:** a full read-through of the skill (not a ticket run) surfaced instructions that couldn't execute as written and gaps that produce recurring red builds. Also two corrections to the review's own findings from Hegar: per-agent worktree isolation is handled at the harness level and doesn't belong in the skill, and slicing is now about **review complexity, not deploy sequencing**, because the new CD system holds service deployment in a dependency graph.
+- **Triage:** operational — each item is a property of how the skill is written and would recur on every ticket.
+- **Change:**
+  - `SKILL.md` — replaced the "sub-agents may communicate directly" claim with a **relay model** (Product is the only channel between roles; that relay is what makes the oversight triggers enforceable), and updated the Code Review loop bullet to match. Added **Spawning and continuing** plus a **pass contents, not paths** table to Agent briefs (role agents run in the project repo, so relative `references/*.md` paths never resolved for them; the table says which references each role gets). Expanded **Gate 2** from one sentence to a four-item checklist (AC coverage with evidence, non-goals intact, role verdicts collected with open P2/P3 accepted or ticketed, PR breakdown still matches what got built). Added a **parallel passes** note to the build/verify loop (QA / Review / Docs read the same tip; run them concurrently and consolidate into one Engineer round).
+  - `references/verification-gate.md` — new: the ordered format → lint → typecheck → tests → full-suite bar, with "read CI config, don't assume the commands", when it applies, and how to handle pre-existing failures. Absorbs the 2026-07-23 format-gate lesson.
+  - `references/pr-standards.md` — added the **slice for review complexity, not deploy safety** criterion (CD sequences rollout, so no slice must be independently shippable) and a **How to cut the stack** section for Gate 3 that **defers the branch plumbing to the `gh-stack` skill** rather than restating it, keeping only the two judgment calls the tool doesn't make (cut in dependency order so per-PR CI is green by construction; clear the verification gate on each branch, not just the tip). `agents/engineer.md` points at the same skill for packaging.
+  - `SKILL.md` Linear hygiene — recast the state transitions as **intents rather than state names** (work-started / awaiting-review / done), since workflow states and their semantics are the team's; the skill now says to read the team's states once and map by meaning, and to ask when two states could plausibly carry an intent. Gate 1's literal `In Progress` generalized to match.
+  - `references/feedback-loop.md` — the circular "same verification you'd run" now names the gate.
+  - `agents/engineer.md` — verification gate replaces the standalone format bullet; loops re-worded as round-trips via Product; added repo `CLAUDE.md` + `personal-code-style` + commit-convention adherence, and commit-along-the-seams to make Gate 3 cheap.
+  - `agents/code-review.md`, `agents/functional-qa.md` — findings return via Product, not directly to the Engineer. Fixed QA's `P3` label, which had drifted out of sync with the other three copies.
+  - `references/self-improvement.md` — noted that the severity block is mirrored in four files and must be changed together.
+- **Approval:** approved by hegar (this session), item by item. Two findings deliberately **not** actioned: source/installed-copy drift (being solved separately by the skill-sync project) and a worktree-isolation rule (harness-level concern).
+
+## 2026-07-23 — Merging is a human gate; confirm ambiguous authorization
+- **Feedback:** Hegar asked "why did you merged?" after Product interpreted "it's merch, please. Rebase the rest of the stack" as merge authorization and landed the FON-1987 stack; the likelier reading was "it's merged" (he had just merged the bottom PR himself) plus a request to prep the rest.
+- **Triage:** operational; ambiguous transcribed instructions before irreversible actions will recur.
+- **Change:** added a "Merging is a human gate" section to SKILL.md: unambiguous delegation required, confirm ambiguous phrasing, prep is never merge authorization.
+- **Approval:** additive — no approval needed.
+
+## 2026-07-23 — Product never touches the repo, even for mechanical fixes
+- **Feedback:** Hegar: "never make the changes yourself, you are the manager" — after Product had directly committed a format fix and a one-line SDL copy fix on FON-1987.
+- **Triage:** operational; the "it's just mechanical" exception will recur on every ticket without a rule.
+- **Change:** expanded the Product role definition in SKILL.md to state Product never commits/pushes repo changes of any size; Engineer owns all repo writes.
+- **Approval:** additive — no approval needed.
+
+## 2026-07-23 — Engineer brief: run the repo format gate before pushing
+- **Feedback:** two red CI builds on FON-1987 came from the same miss: an agent hand-off passed package lint/tests but skipped the repo's root format gate (oxfmt), which is the exact check CI runs.
+- **Triage:** operational; will recur on any repo whose format gate differs from package-level lint.
+- **Change:** added a "run the repository's formatter/format gate before every push or handoff" bullet to agents/engineer.md, How you work.
+- **Approval:** additive — no approval needed.
+
 ## 2026-06-29 — Feedback loop: triage and respond to review feedback
 - **Feedback:** after PRs open, most of a delivery's remaining work was fetching review comments (mainly from Greptile) and addressing them — that flow was missing from the skill. It should be **source-agnostic** (PR bot, human reviewer, or direct chat feedback all take the same flow), run **autonomously after the human's initial call** (flagging only escalations), and the ticket's done-state should be **merge, not PR-open**. (Reconstructed from the FON-1727 delivery thread.)
 - **Triage:** operational — handling post-delivery review feedback was an unwritten part of the lifecycle.

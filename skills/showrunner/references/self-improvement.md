@@ -18,6 +18,8 @@ Match the action to the risk:
 
 Prefer additive fixes. A new clarifying note or example usually closes a process gap with less risk of contradiction or drift than rewriting an existing rule.
 
+**Mirrored content.** The severity-label block is duplicated in `SKILL.md` and three role briefs (Functional QA, Code Review, Documentation) on purpose — role agents start cold and need it inline. If you change a label, change all four copies in the same edit.
+
 ## Invariants — preserve these
 The loop may refine wording, add material, and tune triggers, but it must not weaken or delete these without explicit human sign-off:
 

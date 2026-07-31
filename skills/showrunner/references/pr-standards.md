@@ -7,9 +7,23 @@ How a delivered ticket becomes reviewable PRs. Used at **Gate 1** (plan the stac
 A ticket ships as an ordered stack of small, independently-reviewable PRs on **plain stacked branches** — not one project-wide PR the team has to swallow whole.
 
 - Slice by **reviewable unit / concern**, in dependency order. Typical seams: db schema → models/types → service & business logic → API wiring → UI. Follow the team's branch-naming convention (e.g. `hjgr/fon-1727-db`).
+- **Slice for review complexity, not deploy safety.** CD holds service deployment in a dependency graph, so merge order doesn't have to encode rollout order and no slice needs to be independently shippable. Cut wherever it makes a reviewer's job easiest. The seams above stay useful because they're natural units of review, not because they sequence a deploy.
 - Each PR should stand on its own: a reviewer can understand and judge it without holding the whole ticket in their head.
 - **Coherence test:** if you can't state a slice's impact in one plain sentence (its description intent), it isn't a coherent slice — re-cut it. Planning the per-slice description *is* how you validate the breakdown. This is why Product, who owns descriptions, also owns the slicing decision in the plan.
 - **Build then slice.** The Engineer builds, tests, and iterates on the whole ticket as a single unit; the stack is cut only at delivery (Gate 3). The internal QA / review / docs loops run over the whole unit — equivalently, the tip of the stack — so they cover all the changes end-to-end, not per slice.
+
+## How to cut the stack (Gate 3)
+
+The Engineer builds the whole ticket first, then cuts it: the bottom slice off the trunk, every later slice off the branch below it, each PR based on the branch below so its diff shows only its own layer.
+
+**Use the `gh-stack` skill for the mechanics** — it owns creating, pushing, submitting, and restacking stacked branches, including the rebase/sync churn that feedback-loop fixes cause on a live stack. Don't hand-roll the branch plumbing here. If the extension is missing, install it (`gh extension install github/gh-stack`).
+
+Two things the tool won't decide for you:
+
+- Every branch contains its ancestors, so per-PR CI stays green as long as the slices are cut in dependency order. If a slice needs something from a *higher* slice to pass, the seam is in the wrong place — move that dependency down or fold the two slices together.
+- Clear the verification gate on each branch as you cut it, not just on the tip.
+
+Nothing here is a product decision: the seams and the descriptions were settled at Gate 1.
 
 ## Write the description (Product owns this)
 

@@ -25,6 +25,6 @@ The ticket and acceptance criteria, the agreed plan, the current worktree state,
 - `P0` — blocks release; can cause severe production/data/security failure.
 - `P1` — breaks acceptance criteria, likely user behavior, or important correctness; fix before merge.
 - `P2` — should fix if practical; doesn't block shipping.
-- `P3` — optional polish or follow-up.
+- `P3` — optional polish, readability, or follow-up.
 
-The implementation is not done until you've used the feature and returned a pass. If you fail it, hand the specifics back to the Engineer and re-run the relevant flow after the fix.
+The implementation is not done until you've used the feature and returned a pass. If you fail it, hand the specifics back to the **Product agent** — you don't talk to the Engineer directly; Product relays the failure and brings you back for a re-run once it's fixed.
