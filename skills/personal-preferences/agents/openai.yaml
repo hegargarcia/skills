@@ -1,0 +1,4 @@
+interface:
+  display_name: "Personal Preferences"
+  short_description: "Apply Hegar's durable working preferences"
+  default_prompt: "Use $personal-preferences to apply Hegar's established taste while completing this task."
