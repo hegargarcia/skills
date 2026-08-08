@@ -1,25 +1,41 @@
 ---
 name: personal-preferences
-description: Hegar's durable, cross-project preferences for how agents shape code, tests, documentation, plans, tooling changes, reviews, and handoffs. Apply silently whenever work requires subjective choices or creates or modifies an artifact. Let explicit current instructions and repository conventions take precedence. Update the tracked skill when Hegar gives durable, reusable feedback about how work should be approached or presented.
+description: Hegar's durable, cross-project preferences for how agents shape code, tests, documentation, plans, tooling changes, reviews, and handoffs. Apply silently whenever work requires subjective choices or creates or modifies an artifact. Let explicit current instructions and repository conventions take precedence. Feedback is folded in by a weekly review job; edit the tracked skill mid-session only when Hegar explicitly asks.
 ---
 
-# Personal Preferences
+# Hegar's Personal Style Guide
 
-Preserve Hegar's taste across agents, sessions, and repositories. Use this skill as a small personal operating manual, not as a substitute for understanding the current task or codebase.
+## 1 Introduction
 
-## Apply the preferences
+This document serves as the complete definition of Hegar's durable, cross-project preferences for shaping code, tests, documentation, plans, tooling changes, reviews, and handoffs. It preserves his taste across agents, sessions, and repositories. Use it as a small personal operating manual, not as a substitute for understanding the current task or codebase.
 
-Use this precedence, highest first:
+### 1.1 Terminology notes
 
-1. Follow Hegar's explicit current-turn instructions.
-2. Follow repository-local instructions and established surrounding conventions.
-3. Use these personal preferences to fill gaps and make judgment calls.
+In this guide, the terms *must*, *must not*, *should*, *should not*, and *may* are to be interpreted as described in RFC 2119. The terms *prefer* and *avoid* correspond to *should* and *should not*, respectively. Imperative and declarative statements are prescriptive and correspond to *must*.
 
-Apply the skill silently. Do not turn it into a user-facing workflow or announce it unless higher-level instructions require disclosure.
+Other explanatory notes appear as **Tip:**, **Note:**, or **Exception:** callouts.
 
-Do not use this skill to override safety requirements, product decisions, or deliberate repository conventions.
+### 1.2 Guide notes
 
-## Follow the core direction
+Example code in this guide is **non-normative**. That is, while the examples follow this guide, they do not illustrate the only stylish way to satisfy a rule. Optional stylistic choices made in examples must not be enforced as rules.
+
+### 1.3 Precedence
+
+Instructions closer to the current work always win. Resolve guidance in this order, highest first:
+
+1. Hegar's explicit current-turn instructions.
+2. Repository-local instructions and established surrounding conventions.
+3. This guide, used to fill gaps and make judgment calls.
+
+This guide must not be used to override safety requirements, product decisions, or deliberate repository conventions.
+
+### 1.4 Application
+
+Apply this guide silently. It is an internal guardrail, not a user-facing workflow; do not announce it unless higher-level instructions require disclosure.
+
+Treat the guide as constant: apply it, do not update it. Feedback is folded into the tracked source by a weekly review job. Edit the tracked source in the skills repository only when Hegar explicitly asks, and never edit a detached installed copy.
+
+### 1.5 Core principles
 
 - Prefer directness over indirection.
 - Model real concepts, ownership, and boundaries instead of papering over them with convenient stand-ins.
@@ -31,43 +47,15 @@ Do not use this skill to override safety requirements, product decisions, or del
 - Verify in proportion to risk and provide concrete evidence for behavior that benefits from it.
 - Explain outcomes and mental models before implementation details.
 
-## Load the relevant references
+### 1.6 Reading this guide
 
-Read every reference whose scope materially applies before acting. Do not load unrelated references.
+Chapters 2–9 live under `references/`. Chapters 2–5 cover the artifact being shaped, from general code down to specific stack layers; chapters 6–9 cover the working process: verifying, tooling, shipping, and explaining. Before acting, read every chapter whose scope materially applies to the work; do not load unrelated chapters.
 
-- For naming, abstraction, control flow, architecture, project structure, or UI code, read [code.md](./references/code.md).
-- For TypeScript types, errors, runtime boundaries, or Zod, read [typescript-and-validation.md](./references/typescript-and-validation.md).
-- For Drizzle, SQL, schemas, migrations, transactions, or database mapping, read [data-and-databases.md](./references/data-and-databases.md).
-- For GraphQL schemas, resolvers, codegen mappers, or DataLoader, read [graphql-and-dataloaders.md](./references/graphql-and-dataloaders.md).
-- For test selection, test shape, checks, or behavioral proof, read [testing-and-verification.md](./references/testing-and-verification.md).
-- For dependencies, runtimes, environment configuration, Git, diffs, commits, or pull-request mechanics, read [tooling-and-delivery.md](./references/tooling-and-delivery.md).
-- For product docs, technical explanations, or pull-request prose, read [writing-and-docs.md](./references/writing-and-docs.md).
-- Before Postgres query tuning or index work, read [postgres-performance.md](./references/postgres-performance.md).
-
-## Capture durable feedback
-
-Update this skill when Hegar gives feedback that is clearly:
-
-- A personal preference rather than a generic fact or platform rule
-- Likely to recur
-- Useful across repositories or contexts
-- Actionable enough to change future behavior
-- Not already captured by an existing rule
-
-When feedback qualifies:
-
-1. Find the closest topical reference.
-2. Sharpen an existing rule instead of adding another whenever possible.
-3. Generalize away repository, product, and incident-specific names.
-4. Record the distilled preference, not the feedback wording, review history, or provenance.
-5. Reconcile conflicting guidance immediately; do not preserve both positions.
-6. Add an example only when the preference would otherwise remain ambiguous.
-7. Create a new reference only after a distinct topic has enough durable guidance to earn one.
-
-Do not record product direction, isolated bugs, temporary workarounds, historical narration, or conventions that belong to one repository. Do not keep a raw feedback diary; let repetition establish ambiguous feedback as durable.
-
-## Maintain the canonical source
-
-Edit the tracked source in the skills repository, never a detached installed copy. If only an installed copy is available, locate the checkout containing `skills/personal-preferences`; if no checkout is available, tell Hegar instead of creating another divergent copy.
-
-Before editing, inspect the source and its Git status. Preserve unrelated changes, keep preference updates focused, and validate the skill after structural changes.
+- [2 Code](./references/code.md) — naming, abstraction, control flow, boundaries, and structure for any code, in any language or framework.
+- [3 TypeScript](./references/typescript.md) — the type system, casts, runtime validation, and Zod.
+- [4 Data](./references/data.md) — databases end to end: queries, mapping, schemas, migrations, and Postgres performance.
+- [5 GraphQL](./references/graphql.md) — schema design, resolvers, codegen mappers, and DataLoader.
+- [6 Testing](./references/testing.md) — which tests to write, their shape, and how to verify finished work.
+- [7 Tooling](./references/tooling.md) — dependencies, runtimes, environment configuration, and tool installation.
+- [8 Delivery](./references/delivery.md) — diffs, commits, branches, pushes, and review flow.
+- [9 Writing](./references/writing.md) — documentation, technical explanations, and pull-request prose.
