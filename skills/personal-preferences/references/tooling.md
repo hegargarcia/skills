@@ -2,9 +2,11 @@
 
 ## 7.1 Libraries and runtimes
 
-### 7.1.1 Proven libraries for core mechanics
+### 7.1.1 Active packages over custom solutions
 
-Prefer proven libraries for core mechanics such as Git, SQL, parsers, and protocol clients over hand-rolled wrappers.
+Before writing a custom solution, look for an npm package that covers the need and shows active development. Prefer proven libraries for core mechanics such as Git, SQL, parsers, and protocol clients over hand-rolled wrappers.
+
+**Exception:** Hegar specifies a custom implementation.
 
 ### 7.1.2 Package-backed APIs over shell wrappers
 
@@ -28,15 +30,15 @@ Use the repository's package manager; do not switch package managers for conveni
 
 ### 7.1.7 The repository runtime is respected
 
-In Bun projects, use Bun commands and native file primitives first, and use `node:` APIs for operations Bun does not provide.
+Use the runtime's own commands and native primitives first, and reach for compatibility APIs only for operations it does not provide. In Bun projects, that means Bun commands and native file primitives first, with `node:` APIs as the fallback; defer to [Bun's Node.js compatibility reference](https://bun.com/docs/runtime/nodejs-apis) for what each side covers.
 
 ### 7.1.8 No convenience I/O wrappers
 
 Use the runtime or standard library directly instead of writing convenience I/O wrappers.
 
-### 7.1.9 `simple-git` is used through its typed client
+### 7.1.9 Typed clients before raw escape hatches
 
-Use the typed client returned by `simpleGit()` and use `.raw` only when no typed method covers the operation.
+When a library offers both a typed client and a raw escape hatch, use the typed surface and drop to raw commands only when no typed method covers the operation (for example `simpleGit()` versus `.raw`).
 
 ### 7.1.10 CLIs use an established framework
 

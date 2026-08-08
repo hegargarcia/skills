@@ -2,11 +2,13 @@
 
 Rules in this chapter cover database work end to end: queries, mapping, schema design, migrations, and Postgres performance.
 
+Defer to the query builder's own documentation for current APIs and idioms rather than restating them here. For Drizzle, that is the [documentation](https://orm.drizzle.team/docs/overview) and the [guides index](https://orm.drizzle.team/docs/guides).
+
 ## 4.1 Queries and mapping
 
 ### 4.1.1 Typed query APIs over raw SQL
 
-Prefer Drizzle query APIs, selections, helpers, and typed TypeScript mapping over raw SQL or string-built queries.
+Prefer the query builder's typed APIs, selections, helpers, and typed TypeScript mapping over raw SQL or string-built queries.
 
 ### 4.1.2 Filtering and counting happen in the database
 
@@ -14,11 +16,11 @@ Push filtering and counting into the database or API query instead of fetching a
 
 ### 4.1.3 Predicates compose with typed helpers
 
-Compose predicates with typed helpers such as `or` and `isNotNull`. When `or(...)` is inferred as optional at a required boundary, use the narrow non-null assertion instead of falling back to raw SQL.
+Compose predicates with the builder's typed helpers such as `or` and `isNotNull`. When a composed predicate is inferred as optional at a required boundary, use the narrow non-null assertion instead of falling back to raw SQL.
 
-### 4.1.4 `.if(condition)` over predicate ternaries
+### 4.1.4 Conditional predicates use the builder's API
 
-Use Drizzle's conditional-expression API such as `.if(condition)` instead of ternaries that return a predicate or `undefined`.
+Use the builder's conditional-expression API (Drizzle's `.if(condition)`) instead of ternaries that return a predicate or `undefined`.
 
 ### 4.1.5 Shared SQL helpers over repeated fragments
 
@@ -34,9 +36,9 @@ Give custom search builders a concrete SQL predicate return type and normalize s
 
 ### 4.1.8 Driver decoding lives in a shared mapper module
 
-Put repeated driver decoding in a shared database mapper module and pass it to `mapWith`; do not mix value decoding into SQL expression helpers or repeat inline callbacks across queries.
+Put repeated driver decoding in a shared database mapper module and pass it through the builder's decoder hook (Drizzle's `mapWith`); do not mix value decoding into SQL expression helpers or repeat inline callbacks across queries.
 
-**Note:** a generic such as `sql<Date>` changes only the TypeScript type, so map selected date expressions with their timestamp column or a shared decoder.
+**Note:** a type parameter on a raw SQL fragment, such as `sql<Date>`, changes only the static type, so map selected date expressions with their timestamp column or a shared decoder.
 
 ### 4.1.9 Fallbacks are expressed in the database
 
@@ -52,13 +54,13 @@ Reserve raw SQL for cases where the typed or shared-helper path is genuinely unr
 
 ## 4.2 Schemas and mutations
 
-### 4.2.1 Column `enum` configuration for type safety
+### 4.2.1 Column enums for type safety
 
-Use Drizzle's column `enum` configuration for TypeScript safety even when the database does not have a native enum type.
+Declare column-level enums in the schema for static safety even when the database does not have a native enum type.
 
-### 4.2.2 `.$defaultFn` for runtime-generated values
+### 4.2.2 Runtime-generated defaults use the schema hook
 
-Use `.$defaultFn` for runtime-generated IDs and timestamps, especially with SQLite.
+Generate runtime IDs and timestamps through the schema's default-function hook (Drizzle's `.$defaultFn`), especially with SQLite.
 
 ### 4.2.3 Database-side `now()` for audit timestamps
 
@@ -86,7 +88,7 @@ Prefer the migration tool's generated drop/create shape when it satisfies the re
 
 ### 4.3.3 The query builder is never deep-mocked
 
-Never deep-mock the Drizzle query-builder chain. Use the driver's mock or proxy driver so queries build normally while the test controls returned rows or captures compiled SQL.
+Never deep-mock the query-builder chain. Use the driver's mock or proxy driver so queries build normally while the test controls returned rows or captures compiled SQL.
 
 ## 4.4 Performance diagnosis
 

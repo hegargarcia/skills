@@ -42,10 +42,6 @@ Do not use arbitrary property-presence checks to compensate for unstable owned d
 
 Do not build permissive union mappers around producers that return inconsistent representations of the same entity. Normalize the producers first and derive consumers from one canonical shape.
 
-### 3.1.11 Codegen mappers require a genuine shape difference
-
-Configure GraphQL Codegen parent mappers only when producer and schema shapes genuinely differ or the producer carries source-only fields required by child resolvers.
-
 ## 3.2 Runtime boundaries
 
 ### 3.2.1 Untrusted boundaries are validated
@@ -81,11 +77,15 @@ Express reusable validation contracts as schemas rather than exporting raw regul
 
 Define a shared boundary once when client and server consumers interpret the same inputs; derive their framework adapters from that contract.
 
-## 3.3 Zod
+## 3.3 Schema validation
 
-### 3.3.1 `z.looseObject` over `.passthrough()`
+Defer to the schema library's own documentation for current APIs and idioms rather than restating them here. For Zod, that is the [API reference](https://zod.dev/api), the [v4 migration guide](https://zod.dev/v4/changelog) for deprecated-versus-current forms, and the [library authors guide](https://zod.dev/library-authors) for generic schema parameters.
 
-On Zod 4, prefer `z.looseObject({ ... })` over deprecated `.passthrough()` for permissive objects. Use `.catchall(...)` only when unknown values themselves require validation.
+### 3.3.1 Permissive objects use the library's current idiom
+
+Allow unknown keys with the schema library's supported permissive-object form, and validate unknown values only when they genuinely require validation.
+
+**Note:** on Zod 4 this means `z.looseObject({ ... })` over the deprecated `.passthrough()`, with `.catchall(...)` reserved for unknown values that need validation.
 
 ### 3.3.2 Source-boundary schemas stay source-shaped
 
@@ -97,19 +97,19 @@ For an anti-corruption boundary that intentionally produces an app-owned shape, 
 
 ### 3.3.4 Coerce before validation, transform after
 
-Use `z.preprocess` or `z.coerce.*` when raw input must be normalized before validation, and `.transform()` only after the inner schema can already validate the value. Avoid codecs, stacked pipes, and transform chains unless bidirectional behavior is genuinely needed.
+Normalize raw input with the library's preprocessing or coercion primitives before validation, and derive values only after the inner schema can already validate them (with Zod: `z.preprocess` or `z.coerce.*` before, `.transform()` after). Avoid codecs, stacked pipes, and transform chains unless bidirectional behavior is genuinely needed.
 
 ### 3.3.5 Typed codecs for JSON-string fields
 
 Use a typed codec for a JSON-string field when its input contract is a string and its output schema is known; surface invalid JSON as a validation issue.
 
-### 3.3.6 Built-in APIs first
+### 3.3.6 Built-in primitives first
 
-Prefer built-in APIs such as `z.coerce.number()`, `z.url()`, and `.prefault()` when they express the source contract.
+Prefer the library's built-in coercion, format, and default primitives over hand-rolled equivalents when they express the source contract (for example `z.coerce.number()`, `z.url()`, and `.prefault()`).
 
-### 3.3.7 `.prefault` handles missing inputs
+### 3.3.7 Defaults for missing inputs still validate
 
-Use `.prefault(value)` when a missing input should receive a default and still pass through validation. Do not treat `null` as missing unless the source contract does.
+When a missing input should receive a default, apply it so the value still passes through validation (Zod's `.prefault(value)`). Do not treat `null` as missing unless the source contract does.
 
 ### 3.3.8 Element schemas reject malformed elements
 
@@ -121,7 +121,7 @@ Inline trivial primitive schemas unless an alias names a real domain concept or 
 
 ### 3.3.10 Caller-supplied schema types are preserved
 
-Preserve a caller-supplied schema's inferred type with a generic such as `T extends z4.$ZodType`; do not erase it behind `unknown`.
+Preserve a caller-supplied schema's inferred type with a generic bounded by the library's schema type; do not erase it behind `unknown`.
 
 ```ts
 function defineEndpoint<T extends z4.$ZodType>(
@@ -134,6 +134,6 @@ function defineEndpoint<T extends z4.$ZodType>(
 
 Avoid treeified or otherwise verbose error output unless a caller or debugging workflow needs it.
 
-### 3.3.12 One `safeParse` on hot paths
+### 3.3.12 One safe parse on hot paths
 
-On hot paths, call `safeParse` once and branch on the result. Extract a generic parsing loop only when several consumers repeat the same behavior.
+On hot paths, run safe parsing once and branch on the result. Extract a generic parsing loop only when several consumers repeat the same behavior.

@@ -32,9 +32,9 @@ Use object-method shorthand for resolver methods.
 
 Key a resolver module's field map with the generated resolver type for the GraphQL type it implements, not a generic `Resolvers` alias.
 
-### 5.2.5 Codegen mappers over casts
+### 5.2.5 Codegen mappers require a genuine shape difference
 
-Use GraphQL Codegen mappers when a resolver parent or returned object legitimately differs from the schema shape. Do not bridge the difference with `as unknown as` casts.
+Use the code generator's mapper configuration when a resolver parent or returned object legitimately differs from the schema shape or carries source-only fields required by child resolvers. Do not bridge a shape difference with `as unknown as` casts, and do not configure a mapper when producer and schema shapes already match.
 
 ### 5.2.6 Mapper parent types live in the mapper module
 
@@ -44,16 +44,18 @@ Keep mapper parent types in the package's established mapper module rather than 
 
 Name data-source and service methods as functions that state their action and subject; do not mirror a GraphQL field name as a bare method name.
 
-## 5.3 DataLoader
+## 5.3 Batch loaders
+
+Defer to the loader library's own documentation for batching, caching, and per-request lifecycle patterns; the [DataLoader README](https://github.com/graphql/dataloader) is the authoritative guide.
 
 ### 5.3.1 Typed inputs, inferred results
 
-Type the batch function's input and let DataLoader's generics and result type infer when they remain clear.
+Type the batch function's input and let the loader's generics and result type infer when they remain clear.
 
 ### 5.3.2 Loaders follow `<subject>By<Key>` naming
 
 Name loaders with the repository's `<subject>By<Key>` convention rather than a `get` prefix.
 
-### 5.3.3 `cacheKeyFn` only for composite keys
+### 5.3.3 Custom cache keys only for composite keys
 
-Keep `cacheKeyFn` when composite keys require it; do not add it mechanically for scalar keys.
+Keep a custom cache key function (DataLoader's `cacheKeyFn`) when composite keys require it; do not add one mechanically for scalar keys.

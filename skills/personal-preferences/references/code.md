@@ -223,9 +223,11 @@ Keep pure constants shared by workflow and activity code in a neutral module. Ac
 
 In workflow and activity systems, give each independently retryable side effect its own activity instead of batching unrelated side effects behind one retry boundary.
 
-### 2.5.5 `React.cache` requires identical field needs
+### 2.5.5 Shared fetch caches require identical field needs
 
-Use `React.cache` for shared route fetch logic only when callers need the same fields at the same detail level.
+Share memoized route fetch logic (such as `React.cache`) only when callers need the same fields at the same detail level.
+
+**Note:** defer to the framework's own guidance for mechanics — the [React `cache` reference](https://react.dev/reference/react/cache) for sharing and invalidation pitfalls, and the Next.js [data fetching](https://nextjs.org/docs/app/getting-started/fetching-data) and [caching](https://nextjs.org/docs/app/getting-started/caching) guides for request memoization, parallel fetching, streaming, and revalidation patterns.
 
 ### 2.5.6 Dates are formatted at the display boundary
 

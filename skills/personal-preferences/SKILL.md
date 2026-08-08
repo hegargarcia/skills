@@ -19,6 +19,8 @@ Other explanatory notes appear as **Tip:**, **Note:**, or **Exception:** callout
 
 Example code in this guide is **non-normative**. That is, while the examples follow this guide, they do not illustrate the only stylish way to satisfy a rule. Optional stylistic choices made in examples must not be enforced as rules.
 
+Rules describe patterns, not products. When a rule, note, or example names a specific library, it illustrates the pattern in the current stack; the preference carries over to any equivalent tool.
+
 ### 1.3 Precedence
 
 Instructions closer to the current work always win. Resolve guidance in this order, highest first:
@@ -52,9 +54,9 @@ Treat the guide as constant: apply it, do not update it. Feedback is folded into
 Chapters 2–9 live under `references/`. Chapters 2–5 cover the artifact being shaped, from general code down to specific stack layers; chapters 6–9 cover the working process: verifying, tooling, shipping, and explaining. Before acting, read every chapter whose scope materially applies to the work; do not load unrelated chapters.
 
 - [2 Code](./references/code.md) — naming, abstraction, control flow, boundaries, and structure for any code, in any language or framework.
-- [3 TypeScript](./references/typescript.md) — the type system, casts, runtime validation, and Zod.
-- [4 Data](./references/data.md) — databases end to end: queries, mapping, schemas, migrations, and Postgres performance.
-- [5 GraphQL](./references/graphql.md) — schema design, resolvers, codegen mappers, and DataLoader.
+- [3 TypeScript](./references/typescript.md) — the type system, casts, runtime boundaries, and schema validation.
+- [4 Data](./references/data.md) — databases end to end: queries, mapping, schemas, migrations, and performance.
+- [5 GraphQL](./references/graphql.md) — schema design, resolvers, mappers, and batch loading.
 - [6 Testing](./references/testing.md) — which tests to write, their shape, and how to verify finished work.
 - [7 Tooling](./references/tooling.md) — dependencies, runtimes, environment configuration, and tool installation.
 - [8 Delivery](./references/delivery.md) — diffs, commits, branches, pushes, and review flow.
