@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLAN TITLE</title>
+<!--
+  html-plan template. Reusable scaffolding: CSS variables, action bar, plan-data
+  JSON block, and the decision/copy/save script. Replace the content sections;
+  keep the JSON block and the visible markup in agreement at all times.
+-->
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --ink: #1c1917; --ink-2: #57534e; --ink-3: #a8a29e;
+    --line: #e7e5e4; --accent: #1d4ed8; --accent-ink: #ffffff;
+    --good: #15803d; --warn: #b45309; --bad: #b91c1c; --chip: #f5f5f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131110; --surface: #1c1917; --ink: #e7e5e4; --ink-2: #a8a29e; --ink-3: #78716c;
+      --line: #33302d; --accent: #93b4f8; --accent-ink: #131110;
+      --good: #4ade80; --warn: #fbbf24; --bad: #f87171; --chip: #24211f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2);
+       border-bottom: 2px solid var(--ink); padding-bottom: 6px; margin: 40px 0 16px; }
+  h3 { font-size: 16px; margin: 20px 0 8px; }
+  p { margin: 8px 0; max-width: 76ch; }
+  .sub { color: var(--ink-2); margin-bottom: 8px; }
+  .meta { font: 12px/1.4 ui-monospace, monospace; color: var(--ink-3); }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+       color: var(--ink-2); border-bottom: 1px solid var(--ink); padding: 6px 10px 6px 0; }
+  td { border-bottom: 1px solid var(--line); padding: 7px 10px 7px 0; vertical-align: top; }
+  .mono { font-family: ui-monospace, monospace; font-size: 13px; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px;
+           background: var(--line); border: 1px solid var(--line); margin: 16px 0; }
+  .tile { background: var(--surface); padding: 14px 16px; }
+  .tile b { display: block; font-size: 22px; letter-spacing: -0.02em; }
+  .tile span { font-size: 12.5px; color: var(--ink-2); }
+  .phase { border: 1px solid var(--line); background: var(--surface); margin: 14px 0; }
+  .phase header { display: flex; justify-content: space-between; align-items: baseline;
+                  padding: 10px 16px; border-bottom: 1px solid var(--line); }
+  .phase header h3 { margin: 0; }
+  .phase .body { padding: 12px 16px 16px; }
+  .status { font: 11px/1 ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.06em;
+            padding: 4px 8px; border: 1px solid currentColor; border-radius: 3px; }
+  .s-pending { color: var(--ink-2); } .s-progress { color: var(--accent); }
+  .s-complete { color: var(--good); } .s-blocked { color: var(--warn); }
+  ul.items { margin: 6px 0; padding-left: 20px; }
+  ul.items li { margin: 4px 0; }
+  .decision { border: 1px solid var(--line); border-left: 3px solid var(--accent);
+              background: var(--surface); margin: 14px 0; padding: 12px 16px 14px; }
+  .decision h3 { margin: 0 0 2px; }
+  .decision .why { color: var(--ink-2); font-size: 14px; margin: 2px 0 10px; }
+  .opt { display: flex; gap: 10px; align-items: flex-start; padding: 7px 10px; margin: 4px 0;
+         border: 1px solid var(--line); border-radius: 3px; cursor: pointer; }
+  .opt:hover { border-color: var(--ink-3); }
+  .opt input { margin-top: 3px; accent-color: var(--accent); }
+  .opt .rec { font: 11px/1 ui-monospace, monospace; color: var(--good); border: 1px solid currentColor;
+              border-radius: 3px; padding: 2px 5px; margin-left: 6px; white-space: nowrap; }
+  .opt div small { color: var(--ink-2); display: block; }
+  .decision textarea { width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: 3px;
+                       background: var(--bg); color: var(--ink); font: 13px/1.5 system-ui, sans-serif;
+                       padding: 8px; min-height: 34px; resize: vertical; }
+  .bar { position: sticky; bottom: 0; background: var(--surface); border-top: 1px solid var(--line);
+         padding: 12px 20px; display: flex; gap: 10px; align-items: center; justify-content: center; }
+  button { font: 600 14px system-ui, sans-serif; padding: 9px 16px; border-radius: 3px;
+           border: 1px solid var(--ink); background: var(--surface); color: var(--ink); cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button:hover { opacity: 0.88; }
+  #barstatus { font-size: 13px; color: var(--good); min-width: 140px; }
+  svg text { font: 12.5px system-ui, sans-serif; fill: var(--ink); }
+  svg .lbl2 { font-size: 11px; fill: var(--ink-2); }
+  svg rect.node { fill: var(--surface); stroke: var(--ink-2); rx: 3; }
+  svg rect.hot { stroke: var(--accent); stroke-width: 1.6; }
+  svg line.edge, svg path.edge { stroke: var(--ink-3); stroke-width: 1.4; fill: none; }
+  figcaption { font-size: 12.5px; color: var(--ink-2); margin-top: 6px; }
+  code { background: var(--chip); padding: 1px 5px; border-radius: 3px; font: 13px ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PLAN TITLE</h1>
+  <p class="sub">One-line goal.</p>
+  <p class="meta">DATE · source · plan file: ~/.plans/PROJECT/SLUG/plan.html</p>
+
+  <!-- Optional: stat tiles, only when numbers frame the problem.
+  <h2>1 · Context</h2>
+  <div class="tiles"><div class="tile"><b>N</b><span>what it counts</span></div></div>
+  -->
+
+  <!-- Optional: dependency graph — inline SVG, nodes + arrow edges, aria-label describing the flow.
+  <h2>2 · Shape of the work</h2>
+  <figure>
+    <svg viewBox="0 0 940 120" role="img" aria-label="...">
+      <rect class="node" x="8" y="36" width="120" height="48"/>
+      <text x="68" y="63" text-anchor="middle">Node</text>
+    </svg>
+    <figcaption>caption</figcaption>
+  </figure>
+  -->
+
+  <h2>Phases</h2>
+  <div class="phase"><header><h3>Phase 1 — TITLE</h3><span class="status s-pending">pending</span></header>
+  <div class="body"><ul class="items"><li>item</li></ul></div></div>
+
+  <!-- Decision cards: data-id must match a decisions[] entry in the JSON. -->
+  <h2>Decisions</h2>
+  <div class="decision" data-id="D1">
+    <h3>D1 · QUESTION</h3>
+    <p class="why">Why this needs a call, in one line.</p>
+    <label class="opt"><input type="radio" name="D1" value="a" checked>
+      <div><b>Option A</b><span class="rec">recommended</span><small>consequence</small></div></label>
+    <label class="opt"><input type="radio" name="D1" value="b">
+      <div><b>Option B</b><small>consequence</small></div></label>
+    <textarea placeholder="notes (optional)"></textarea>
+  </div>
+</main>
+
+<div class="bar">
+  <button class="primary" id="copybtn">Copy decisions as prompt</button>
+  <button id="savebtn">Save state to file</button>
+  <span id="barstatus"></span>
+</div>
+
+<script type="application/json" id="plan-data">
+{
+  "plan_title": "PLAN TITLE",
+  "goal": "",
+  "project": "PROJECT",
+  "slug": "SLUG",
+  "created_at": "",
+  "updated_at": "",
+  "current_phase": 1,
+  "phases": [
+    { "id": 1, "title": "TITLE", "status": "pending", "blocked_by": [],
+      "items": [{ "text": "item", "done": false }] }
+  ],
+  "decisions": [
+    { "id": "D1", "question": "QUESTION", "options": { "a": "Option A", "b": "Option B" },
+      "recommended": "a", "selected": null, "note": "" }
+  ],
+  "progress_log": [],
+  "errors": []
+}
+</script>
+
+<script>
+(function () {
+  var dataEl = document.getElementById("plan-data");
+  var plan = JSON.parse(dataEl.textContent);
+
+  function readDecisions() {
+    plan.decisions.forEach(function (d) {
+      var card = document.querySelector('.decision[data-id="' + d.id + '"]');
+      if (!card) return;
+      var picked = card.querySelector('input[type="radio"]:checked');
+      d.selected = picked ? picked.value : null;
+      d.note = card.querySelector("textarea").value.trim();
+    });
+    plan.updated_at = new Date().toISOString();
+  }
+
+  function syncJson() {
+    readDecisions();
+    dataEl.textContent = "\n" + JSON.stringify(plan, null, 2) + "\n";
+  }
+
+  document.getElementById("copybtn").addEventListener("click", function () {
+    readDecisions();
+    var lines = ["Decisions from ~/.plans/" + plan.project + "/" + plan.slug + "/plan.html:"];
+    plan.decisions.forEach(function (d) {
+      var label = d.selected ? d.options[d.selected] : "(not selected)";
+      var line = d.id + " " + d.question + ": " + (d.selected || "-") + " — " + label;
+      if (d.note) line += " · note: " + d.note;
+      lines.push(line);
+    });
+    lines.push("Proceed with the plan under these decisions.");
+    var text = lines.join("\n");
+    navigator.clipboard.writeText(text).then(function () {
+      document.getElementById("barstatus").textContent = "copied — paste it to the agent";
+    }, function () {
+      window.prompt("Copy this:", text);
+    });
+  });
+
+  var handle = null;
+  document.getElementById("savebtn").addEventListener("click", async function () {
+    syncJson();
+    var html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    var status = document.getElementById("barstatus");
+    if (window.showSaveFilePicker) {
+      try {
+        if (!handle) {
+          handle = await window.showSaveFilePicker({
+            suggestedName: "plan.html",
+            types: [{ description: "HTML", accept: { "text/html": [".html"] } }]
+          });
+        }
+        var w = await handle.createWritable();
+        await w.write(html);
+        await w.close();
+        status.textContent = "saved";
+        return;
+      } catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    a.download = "plan.html";
+    a.click();
+    status.textContent = "downloaded — replace the plan file";
+  });
+
+  plan.decisions.forEach(function (d) {
+    var card = document.querySelector('.decision[data-id="' + d.id + '"]');
+    if (!card) return;
+    if (d.selected) {
+      var el = card.querySelector('input[value="' + d.selected + '"]');
+      if (el) el.checked = true;
+    }
+    if (d.note) card.querySelector("textarea").value = d.note;
+  });
+})();
+</script>
+</body>
+</html>
