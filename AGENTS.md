@@ -6,5 +6,5 @@ This is an internal guardrail, not a user-facing workflow. Treat the guide as co
 
 ## Workflows
 
-- Building, changing, or fixing product code: follow the `showrunner` skill (~/dev/skills/skills/showrunner/SKILL.md).
+- Building, changing, or fixing product code — including feature kickoffs that arrive as proposals, scoping, or "we're missing X": follow the `showrunner` skill (~/dev/skills/skills/showrunner/SKILL.md).
 - Multi-step work gets a plan per the `html-plan` skill (~/dev/skills/skills/html-plan/SKILL.md); plans live at ~/.plans/<project>/<slug>/plan.html and are never committed.
