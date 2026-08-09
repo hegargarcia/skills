@@ -14,7 +14,8 @@ npx skills add HegarGarcia/skills
 
 | Skill | What it does |
 | --- | --- |
-| [`showrunner`](skills/showrunner/SKILL.md) | Product-led, multi-agent workflow that delivers a single Linear ticket end to end — plan with the human, then build, test, review, document, and open reviewable PRs. |
+| [`showrunner`](skills/showrunner/SKILL.md) | End-to-end feature workflow — plan as a task graph, build, open draft PRs per slice, and work review feedback until merge. |
+| [`html-plan`](skills/html-plan/SKILL.md) | Interactive HTML plans under `~/.plans` — human edits in the browser, agent reads embedded JSON as durable state. |
 | [`personal-preferences`](skills/personal-preferences/SKILL.md) | Hegar's durable, cross-project preferences for how agents shape code, tests, docs, tooling changes, reviews, and handoffs. |
 
 ## Layout
