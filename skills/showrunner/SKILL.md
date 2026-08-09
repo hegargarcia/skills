@@ -19,7 +19,7 @@ A tracker ticket is optional context, never a prerequisite. Never create or rest
 
 Decompose the work into a dependency graph of buildable nodes — each node a coherent slice whose impact you can state in one sentence (if you can't, re-cut it). Register the nodes and their blocked-by edges in the harness's task list when one exists.
 
-For anything beyond small or mechanical work, render the plan with the **html-plan** skill (it lives at `~/.plans/<project>/<slug>/plan.html`, outside every repo) and share the path. Put genuine open questions in the plan as decision cards rather than blocking on chat.
+For anything beyond small or mechanical work, render the plan with the **html-plan** skill (it lives at `.cache/plans/<slug>/plan.html` inside the repo, gitignored) and share the path. Put genuine open questions in the plan as decision cards rather than blocking on chat.
 
 Ask for approval once, and only when scope or approach is genuinely ambiguous or the change is large. Small, well-understood work proceeds without ceremony.
 

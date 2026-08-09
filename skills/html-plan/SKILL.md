@@ -1,6 +1,6 @@
 ---
 name: html-plan
-description: Authors and maintains plans as single-file interactive HTML documents whose embedded state the human edits in the browser and exports back as a prompt. Use when starting multi-step work that needs a navigable plan artifact — "plan it", "make an html plan", "show me the plan", "break this down", "let's plan before building" — when resuming work whose plan exists under ~/.plans/<project>/<slug>/plan.html, when recording decisions or phase progress on an existing plan, or when another skill (e.g. showrunner) reaches its planning step. Skip for single-step tasks, quick answers, and plans that live in someone else's tracker.
+description: Authors and maintains plans as single-file interactive HTML documents whose embedded state the human edits in the browser and exports back as a prompt. Use when starting multi-step work that needs a navigable plan artifact — "plan it", "make an html plan", "show me the plan", "break this down", "let's plan before building" — when resuming work whose plan exists under .cache/plans/<slug>/plan.html in the repo, when recording decisions or phase progress on an existing plan, or when another skill (e.g. showrunner) reaches its planning step. Skip for single-step tasks, quick answers, and plans that live in someone else's tracker.
 ---
 
 # HTML plans
@@ -9,9 +9,9 @@ A plan is a control surface, not a transcript. One self-contained HTML file give
 
 ## Where plans live
 
-`~/.plans/<project>/<slug>/plan.html` — `<project>` is the repository or directory name, `<slug>` a short kebab-case name for the work (e.g. `~/.plans/fonzi/fon-2100-resume-upload/plan.html`).
+`.cache/plans/<slug>/plan.html`, relative to the project root of the repo being worked on — `<slug>` is a short kebab-case name for the work (e.g. `.cache/plans/fon-2100-resume-upload/plan.html`). The path is repo-relative on purpose: remote harnesses can only write inside the project root, and `.cache` is already covered by standard Node gitignores, so plans stay out of commits with no setup. If the repo's `.gitignore` does not cover `.cache/`, add that line before writing the plan.
 
-Plans never live inside a repository, never appear in commits or pull requests, and are never uploaded anywhere. One plan per piece of work; revise the file in place.
+Plans are never committed, never appear in pull requests, and are never uploaded anywhere. One plan per piece of work; revise the file in place.
 
 ## Portability is a hard constraint
 

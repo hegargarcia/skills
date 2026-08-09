@@ -87,7 +87,7 @@
 <main>
   <h1>PLAN TITLE</h1>
   <p class="sub">One-line goal.</p>
-  <p class="meta">DATE · source · plan file: ~/.plans/PROJECT/SLUG/plan.html</p>
+  <p class="meta">DATE · source · plan file: .cache/plans/SLUG/plan.html</p>
 
   <!-- Optional: stat tiles, only when numbers frame the problem.
   <h2>1 · Context</h2>
@@ -173,7 +173,7 @@
 
   document.getElementById("copybtn").addEventListener("click", function () {
     readDecisions();
-    var lines = ["Decisions from ~/.plans/" + plan.project + "/" + plan.slug + "/plan.html:"];
+    var lines = ["Decisions from .cache/plans/" + plan.slug + "/plan.html:"];
     plan.decisions.forEach(function (d) {
       var label = d.selected ? d.options[d.selected] : "(not selected)";
       var line = d.id + " " + d.question + ": " + (d.selected || "-") + " — " + label;

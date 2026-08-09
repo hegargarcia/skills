@@ -2,3 +2,6 @@
 .agents/
 skills-lock.json
 node_modules/
+
+# html-plan artifacts — never committed
+.cache/
