@@ -1,6 +1,6 @@
 ---
 name: showrunner
-description: The default workflow for any feature-development work — building, changing, or fixing product code that will end up in a pull request. Fire on any request to implement, add, build, fix, refactor, wire up, or ship something — "add an endpoint for X", "fix the upload bug", "make the card show Y", a ticket ID, a pasted PR or thread — even when no workflow or skill is named and no ticket exists. Plans the work as a task graph, builds it, opens draft PRs as slices complete, and works review feedback until merge. Skip only for pure questions, reviews of existing code, or work outside a product codebase.
+description: The default end-to-end workflow for feature development — plans the work as a task graph, builds it, opens draft PRs as slices complete, and works review feedback until merge. Fire on any request to implement, add, build, fix, refactor, wire up, or ship product code — "add an endpoint for X", "fix the upload bug", "make the card show Y", a ticket ID like FON-1234, a pasted PR or thread — even when no skill is named and no ticket exists. Also fire on requests to handle feedback on open PRs — "address the review comments", "check greptile", "rebase and fix the feedback". Skip for pure questions or explanations, standalone code review (that's the code-review skill), and work outside a product codebase.
 ---
 
 # Showrunner — ship a change end to end

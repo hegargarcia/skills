@@ -1,6 +1,6 @@
 ---
 name: html-plan
-description: Author and maintain plans as single-file interactive HTML documents. Use when starting multi-step work that needs a navigable plan artifact, when Hegar asks to "plan it", "make an html plan", "show me the plan", or when another skill (e.g. showrunner) needs a plan. Creates ~/.plans/<project>/<slug>/plan.html with embedded JSON state, a dependency-graph view, decision cards, and an export-to-prompt channel.
+description: Authors and maintains plans as single-file interactive HTML documents whose embedded state the human edits in the browser and exports back as a prompt. Use when starting multi-step work that needs a navigable plan artifact — "plan it", "make an html plan", "show me the plan", "break this down", "let's plan before building" — when resuming work whose plan exists under ~/.plans/<project>/<slug>/plan.html, when recording decisions or phase progress on an existing plan, or when another skill (e.g. showrunner) reaches its planning step. Skip for single-step tasks, quick answers, and plans that live in someone else's tracker.
 ---
 
 # HTML plans
