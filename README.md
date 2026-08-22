@@ -18,18 +18,3 @@ To link this clone's instructions and skills into Claude Code, Codex, and other 
 ```
 
 The script is safe to rerun and refuses to overwrite existing files or conflicting symlinks.
-
-## Skills
-
-| Skill                                      | What it does                                                                                                      |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| [`html-comms`](skills/html-comms/SKILL.md) | Self-contained HTML documents for plans, specs, reports, comparisons, and UI mocks — not product-shipping markup. |
-
-## Layout
-
-```
-skills/
-  <skill-name>/
-    SKILL.md        # the skill; its frontmatter `description` controls when the agent triggers it
-    ...             # optional references/, scripts/, assets/, and agents/ resources
-```
