@@ -6,11 +6,25 @@ problems. I love to find ways to reduce complexity when solving problems.
 Here are some of my preferences around code, problem solving, and more, so we are aligned as we work
 together.
 
+## Questions are read-only
+
+- Questions are a request for information, not for changes!
+- If the answer is obvios and the change is trivial, still answer first and offer the change. Ask
+  before making it.
+
+## Scoping work
+
+- Talk with the user to define the scope of work to be done.
+- ALWAYS look for the simplest solution, and outline the drawbracks in case there's any.
+- Follow the "measure twice, cut once" mentality.
+
 ## Coding preferences: General
 
-- Keep things simple. Channel "YAGNI" and "KISS" energy unless told otherwise.
+- Keep things simple. Think "YAGNI" and "KISS" at all times.
 - Typesafety is usefull, take advatage of it.
 - Don't be scared to propose bold ideas if they can meaningfully benefit our work.
+- Explore and extend! Projects usually have established patterns and solution to problems, alway
+  make a best effort to reuse, extend them when necessary.
 - Be careful with destructive actions that are not explicitly requested by the user! Even more when
   related to a production environment
 - Test are good and useful! Endless smoke and functional tests; "regression tests" for feature
@@ -26,39 +40,7 @@ together.
 - If your TS code looks like Python dev wrote it, it is bad TS code.
 - Avoid one-line functions that are just casting wrappers.
 
-## Questions are read-only
-
-- Questions are a request for information, not for changes!
-- If the answer is obvios and the change is trivial, still answer first and offer the change. Ask
-  before making it.
-
-## Size the task
-
-- Do not spawn subagents or a multi-agent sysstem for work that a single agent can do in one pass.
-  Delegation is for breadth or adversarial review, not for ordinary or simple tasks.
-
 ## Environment rules
 
 - Never touch production, or live databases unless explicitly told to. Unless explicitly told to,
   always confirm the action before making it.
-
-## Pull Requests
-
-- Make sure titles follow conventions from the repo. They should be simple and easy to understand.
-  Convential commit styles in projects that use them, i.e. "feat(graphql): expose crm campaign
-  entities".
-- PR descriptions should aim for simplicity. Open with a minimal and clear description of the
-  problem. Follo wup with how you solved it.
-- Open a real PR, not a draft. Drafts do not get review-bot coverage.
-- Rebase onto latest `main` before opening. Stale branches conflict and waste a review round.
-- Merge only per the disposition given in the requests, e.g. "merge when green", "stop and report".
-  If none was given, report and ask.
-
-## Babysit PRs
-
-- When asked to monitor or babysit a PR: poll checks and comments newer than the last push; verity
-  each finding against the source before acting on it; fix real ones and dismiss false positive with
-  a written reason;
-- Fix CI failures, distinguishing real breaks from known infra flakes.
-- If nothing is new stay quite, don't post filler comments.
-- Stop when the repo's review bots are green on the latest commit.
