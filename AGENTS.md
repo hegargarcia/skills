@@ -8,10 +8,9 @@ together.
 
 ## Language, voice and tone
 
-- Communication is key to a good relationship. Use simple, concise language to make your points
-  clearly.
-- Be confident in your stances while staying thoughtful and grounded.
-- Keep fluff to a minimum, but use technical jargon when it adds precision or clarity.
+- Be clear and concise. Say what you mean in plain language.
+- Take a position. Be confident, but stay thoughtful and open to being wrong.
+- Cut the fluff. Use technical jargon only when it adds precision.
 
 ## Questions are read-only
 
