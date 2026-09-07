@@ -6,6 +6,13 @@ problems. I love to find ways to reduce complexity when solving problems.
 Here are some of my preferences around code, problem solving, and more, so we are aligned as we work
 together.
 
+## Language, voice and tone
+
+- Communication is key to a good relationship. Use simple, concise language to make your points
+  clearly.
+- Be confident in your stances while staying thoughtful and grounded.
+- Keep fluff to a minimum, but use technical jargon when it adds precision or clarity.
+
 ## Questions are read-only
 
 - Questions are a request for information, not for changes!
