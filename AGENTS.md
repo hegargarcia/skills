@@ -15,25 +15,25 @@ together.
 ## Questions are read-only
 
 - Questions are a request for information, not for changes!
-- If the answer is obvios and the change is trivial, still answer first and offer the change. Ask
+- If the answer is obvious and the change is trivial, still answer first and offer the change. Ask
   before making it.
 
 ## Scoping work
 
 - Talk with the user to define the scope of work to be done.
-- ALWAYS look for the simplest solution, and outline the drawbracks in case there's any.
+- ALWAYS look for the simplest solution, and outline the drawbacks in case there's any.
 - Follow the "measure twice, cut once" mentality.
 
 ## Coding preferences: General
 
 - Keep things simple. Think "YAGNI" and "KISS" at all times.
-- Typesafety is usefull, take advatage of it.
+- Typesafety is useful, take advantage of it.
 - Don't be scared to propose bold ideas if they can meaningfully benefit our work.
-- Explore and extend! Projects usually have established patterns and solution to problems, alway
+- Explore and extend! Projects usually have established patterns and solutions to problems, always
   make a best effort to reuse, extend them when necessary.
 - Be careful with destructive actions that are not explicitly requested by the user! Even more when
   related to a production environment
-- Test are good and useful! Endless smoke and functional tests; "regression tests" for feature
+- Tests are good and useful! Endless smoke and functional tests; "regression tests" for feature
   deletion, tests for third party libraries, etc, much less good. Tests must be focused, not slop.
 - Comments are great to clarify functionality, how code is used, and when to use it. Don't comment
   every line, but use them to describe (concisely) how elements should be used.
@@ -41,12 +41,16 @@ together.
 
 ## Coding preferences: Typescript
 
-- `any` is enemy #1. Inferred types are our friends. Our systems should adapts and react to changes,
+- `any` is enemy #1. Inferred types are our friends. Our systems should adapt and react to changes,
   instead of needing changes everywhere.
 - If your TS code looks like Python dev wrote it, it is bad TS code.
 - Avoid one-line functions that are just casting wrappers.
 
 ## Environment rules
 
-- Never touch production, or live databases unless explicitly told to. Unless explicitly told to,
-  always confirm the action before making it.
+- Never touch production or live databases unless explicitly told to. Even then, confirm the action
+  before making it.
+
+## Browser automation
+
+- Use `npx agent-browser` for all browser-based tasks unless I tell you otherwise.
