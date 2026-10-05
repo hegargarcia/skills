@@ -19,7 +19,7 @@ another model. Keep small checks local; you still own the review.
 
 ```bash
 codex exec -C "$repo" -m gpt-6-astra -s read-only \
-  -c 'review_model="gpt-6-astra"' \
+  -c 'review_model="gpt-6-astra"' -c 'service_tier="fast"' \
   -c 'approval_policy="never"' --json -o "$task_dir/report.md" \
   review --uncommitted > "$task_dir/events.jsonl" 2> "$task_dir/stderr.log"
 ```
