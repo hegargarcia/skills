@@ -8,7 +8,8 @@ description:
 # Writing
 
 Use for every writing request in Claude Code and Codex, including quick edits. Delegate writing to
-`gpt-6-astra`, unless the user selects another model. You own the final wording.
+`gpt-6.1-sol` with high reasoning on the fast tier, unless the user selects another model. You own
+the final wording.
 
 ## Voice and tone
 
@@ -47,26 +48,26 @@ precedence; an assistant suggestion alone is not evidence of the user's voice.
   padding, sales clichés, inflated claims, and generic AI phrasing.
 - Tell the worker to use supplied facts and flag necessary gaps rather than invent names, quotes,
   numbers, results, deadlines, or commitments. Request one strong draft unless variants are useful
-  or requested. Tell it to draft only, not send or publish, and not delegate further.
+  or requested. Tell it to draft only: no file edits, sending, publishing, or delegating.
 
 ## Run
 
-Check `codex exec --help`. Create a unique temporary task directory and write the brief to
-`prompt.md`. Run with medium reasoning and the fast service tier:
+In T3, call `orchestrator_capabilities` once per thread. Use the Codex provider's `gpt-6.1-sol` with
+options `{ reasoningEffort: "high", serviceTier: "priority" }`. Priority is the fast tier. Start one
+worker with `delegate_task` (`role: "general"`, `mode: "wait"`, a short `title`, the brief as
+`task`). Save `taskId`. The child gets no history, so the brief must stand alone. Do not use
+`t3_thread_send`, `create_threads`, or `t3_thread_launch` for writing.
 
-```bash
-codex exec -C "$task_dir" --skip-git-repo-check -m gpt-6-astra -s read-only \
-  -c 'model_reasoning_effort="medium"' -c 'service_tier="fast"' \
-  -c 'approval_policy="never"' --json -o "$task_dir/draft.md" - \
-  < "$task_dir/prompt.md" > "$task_dir/events.jsonl" 2> "$task_dir/stderr.log"
-```
+If T3 tools are not listed, try one direct capability call. Outside T3, use a native Sol subagent
+and keep its ID. In Claude Code, use a custom subagent only if it is set up to run Sol. If no route
+runs Sol, report the blocker. Do not substitute a model.
 
-- Change `-m` when the user chooses another model. If repository context is needed, use that
-  repository as the working directory and include the relevant file paths in the brief.
-- Use quoted prompt files or heredocs for stdin. Track the process or task handle and wait for its
-  exit status before treating the draft as complete.
-- Resume an explicit session ID for follow-ups; never use `--last` with parallel workers. If the
-  worker fails, report the specific failure and finish the draft locally when possible.
+A wait timeout does not cancel the child: follow its `next`. Do not poll or start a second worker.
+Timeout, error, or empty reply is not a draft. On failure, cancel, verify stop, report it, and
+finish the draft locally.
+
+For revisions, use a fresh `delegate_task` in T3, or follow up the saved native ID. Send the brief,
+the last draft, and the user's feedback.
 
 ## Deliver
 
