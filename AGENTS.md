@@ -41,22 +41,22 @@ together.
 
 - Tests are good and useful! A test earns its keep by catching a specific failure that existing
   coverage misses: a business rule, a real edge case, a bug we actually hit. Coverage for its own
-  sake is slop. A changed line, branch, or deleted feature isn't a reason on its own. Zero new
-  tests can be the right answer.
-- Test where the rule lives. A domain rule tested in the domain keeps protecting us when the
-  route, resolver, or caller changes. Re-testing it through every caller multiplies maintenance
-  without adding confidence.
-- Trust the database and libraries to do their jobs, and test our decisions about using them. A
-  fake database that returns the rows we expect and counts update calls can exercise our logic,
-  but it can't tell us our queries select the right data, persist the right state, or lock
-  correctly. Stubbing an error to check how we respond to it is a different, perfectly fine thing.
-- Know which job a test is doing. A one-off check verifies today's behavior; regression
-  protection needs something that runs routinely. A test that quietly skips where we rely on it
-  gives false confidence and still costs maintenance. If I ask for lasting protection and the
-  existing setup can't run it, say so.
+  sake is slop. A changed line, branch, or deleted feature isn't a reason on its own. Zero new tests
+  can be the right answer.
+- Test where the rule lives. A domain rule tested in the domain keeps protecting us when the route,
+  resolver, or caller changes. Re-testing it through every caller multiplies maintenance without
+  adding confidence.
+- Trust the database and libraries to do their jobs, and test our decisions about using them. A fake
+  database that returns the rows we expect and counts update calls can exercise our logic, but it
+  can't tell us our queries select the right data, persist the right state, or lock correctly.
+  Stubbing an error to check how we respond to it is a different, perfectly fine thing.
+- Know which job a test is doing. A one-off check verifies today's behavior; regression protection
+  needs something that runs routinely. A test that quietly skips where we rely on it gives false
+  confidence and still costs maintenance. If I ask for lasting protection and the existing setup
+  can't run it, say so.
 - Test setup is code we maintain too. Reuse what's there before hand-rolling harnesses or bending
-  production code around a test. A concrete risk or known failure can make a heavier test worth
-  its cost; "it could be tested" never does.
+  production code around a test. A concrete risk or known failure can make a heavier test worth its
+  cost; "it could be tested" never does.
 
 ## Coding preferences: Typescript
 
