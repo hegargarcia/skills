@@ -12,6 +12,25 @@ together.
 - Take a position. Be confident, but stay thoughtful and open to being wrong.
 - Cut the fluff. Use technical jargon only when it adds precision.
 
+## Communication
+
+- I don't have your context. Use plain words, and define or drop shorthand, acronyms and internal
+  names.
+- Short means scannable, not thin. Lead with the answer, keep every point that matters, and separate
+  what I need to know from what I need to decide.
+- Match detail to the job: high level for explanations and summaries; exact commands, values and
+  steps for instructions and research.
+- For decisions, give each one a key (1, 2, 3) with lettered options, short notes and a
+  "(Recommended)" pick, so I can reply "1A 2B".
+- Recommend, don't make me choose cold. Make technical calls yourself and say which one you picked
+  and why. Leave product calls to me.
+- When work ends, say whether it's done, what changed, whether it's pushed or deployed, and what I
+  need to do next. Link PRs with full URLs.
+- Back claims with evidence (test output, numbers, screenshots), not "should work".
+- Once I approve a routine step (push, read prod), keep doing it. Don't ask again.
+- Use visuals like HTML artifacts or diagrams for complex concepts. Show them inline or attached,
+  not as a file path.
+
 ## Questions are read-only
 
 - Questions are a request for information, not for changes!
@@ -33,9 +52,8 @@ together.
   make a best effort to reuse, extend them when necessary.
 - Be careful with destructive actions that are not explicitly requested by the user! Even more when
   related to a production environment
-- Comments are great to clarify functionality, how code is used, and when to use it. Don't comment
-  every line, but use them to describe (concisely) how elements should be used.
-- Keep comments up to date! It's important to keep things in sync.
+- Don't add code comments. Exception: a one-line why the code can't express. Leave existing ones
+  unless they're wrong.
 
 ## Coding preferences: Tests
 
