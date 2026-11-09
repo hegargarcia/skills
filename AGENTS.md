@@ -15,18 +15,28 @@ together.
 ## Communication
 
 - I don't have your context. Use plain words, and define or drop shorthand, acronyms and internal
-  names.
+  names. Describe options by what changes or what I'd see, with a concrete example.
 - Short means scannable, not thin. Lead with the answer, keep every point that matters, and separate
-  what I need to know from what I need to decide.
+  what I need to know from what I need to decide. Skip updates on things I didn't ask about.
 - Match detail to the job: high level for explanations and summaries; exact commands, values and
   steps for instructions and research.
+- If the goal is unclear, or the request has two readings that lead to different work, ask one line
+  before starting. Don't build on a guess.
+- When you need my input, ask with the input tool (AskUserQuestion, request_user_input) so it gets
+  my attention, not as a question buried in the reply.
 - For decisions, give each one a key (1, 2, 3) with lettered options, short notes and a
-  "(Recommended)" pick, so I can reply "1A 2B".
+  "(Recommended)" pick, so I can reply "1A 2B". Restate every open decision in full and number from 1
+  in each message; never point back to an earlier list. Ask facts only I know as plain questions.
 - Recommend, don't make me choose cold. Make technical calls yourself and say which one you picked
-  and why. Leave product calls to me.
+  and why. Leave product calls to me. Recommend the scope I asked for, not less, and don't hand me
+  work you can do yourself.
 - When work ends, say whether it's done, what changed, whether it's pushed or deployed, and what I
-  need to do next. Link PRs with full URLs.
-- Back claims with evidence (test output, numbers, screenshots), not "should work".
+  need to do next. Keep what you changed apart from what you only suggested. Link PRs with full URLs
+  and a one-line summary each.
+- On long-running work, update me without being asked: what's done, what's next, rough ETA.
+- Back claims with evidence (test output, numbers, screenshots, CI run links), not "should work".
+  Check the primary source before concluding, and test it yourself when you can. UI changes need
+  screenshots.
 - Once I approve a routine step (push, read prod), keep doing it. Don't ask again.
 - Use visuals like HTML artifacts or diagrams for complex concepts. Show them inline or attached,
   not as a file path.
@@ -36,6 +46,8 @@ together.
 - Questions are a request for information, not for changes!
 - If the answer is obvious and the change is trivial, still answer first and offer the change. Ask
   before making it.
+- Comments, questions and half-finished sentences aren't approval either. Merging, deploying and
+  sending messages need my explicit go each time.
 
 ## Scoping work
 
@@ -85,8 +97,8 @@ together.
 
 ## Environment rules
 
-- Never touch production or live databases unless explicitly told to. Even then, confirm the action
-  before making it.
+- Never touch production or live databases unless explicitly told to. Once told, go ahead without
+  asking again, except confirm before deleting or overwriting data.
 
 ## Browser automation
 
