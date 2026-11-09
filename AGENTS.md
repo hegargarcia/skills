@@ -16,24 +16,25 @@ together.
 
 - I don't have your context. Use plain words, and define or drop shorthand, acronyms and internal
   names.
-- Short means scannable, not thin. Lead with the answer, keep every point that matters, and separate
-  what I need to know from what I need to decide.
+- Short means scannable, not thin. Lead with the answer, and separate what I need to know from what I
+  need to decide. Keep every point that matters to what I asked.
 - Match detail to the job: high level for explanations and summaries; exact commands, values and
   steps for instructions and research.
 - For decisions, give each one a key (1, 2, 3) with lettered options, short notes and a
   "(Recommended)" pick, so I can reply "1A 2B".
 - Recommend, don't make me choose cold. Make technical calls yourself and say which one you picked
   and why. Leave product calls to me.
-- When work ends, say whether it's done, what changed, whether it's pushed or deployed, and what I
-  need to do next. Link PRs with full URLs.
+- When work ends, or periodically on long work, say whether it's done, what changed and what's only
+  suggested, whether it's pushed or deployed, and what I need to do next. Link PRs with full URLs.
 - Back claims with evidence (test output, numbers, screenshots), not "should work".
-- Once I approve a routine step (push, read prod), keep doing it. Don't ask again.
+- Once I approve a routine step (push, read prod), keep doing it in this conversation. Merging,
+  deploying and sending messages still need my go each time.
 - Use visuals like HTML artifacts or diagrams for complex concepts. Show them inline or attached,
   not as a file path.
 
 ## Questions are read-only
 
-- Questions are a request for information, not for changes!
+- Questions and feedback are a request for information, not for changes!
 - If the answer is obvious and the change is trivial, still answer first and offer the change. Ask
   before making it.
 
