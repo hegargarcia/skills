@@ -1,7 +1,6 @@
 # skills.sh install artifacts — this repo is a skills *source*, not an install target
 .agents/
 skills-lock.json
-node_modules/
 
 # html-plan artifacts — never committed
 .cache/
