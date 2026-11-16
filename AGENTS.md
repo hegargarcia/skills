@@ -92,3 +92,7 @@ together.
 ## Browser automation
 
 - Use `npx agent-browser` for all browser-based tasks unless I tell you otherwise.
+
+## Council
+
+- Council members: the latest Claude Opus, GPT Sol, and Muse Wonder Full.
