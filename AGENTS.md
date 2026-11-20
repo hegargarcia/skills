@@ -95,4 +95,4 @@ together.
 
 ## Council
 
-- Council members: the latest Claude Opus, GPT Sol, and Muse Wonder Full.
+- Council members: the latest Claude Opus and GPT Sol.
