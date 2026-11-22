@@ -27,7 +27,7 @@ together.
 - When work ends, or periodically on long work, say whether it's done, what changed and what's only
   suggested, whether it's pushed or deployed, and what I need to do next. Link PRs with full URLs.
 - Back claims with evidence (test output, numbers, screenshots), not "should work".
-- Once I approve a routine step (push, read prod), keep doing it in this conversation. Merging,
+- Once I approve a routine step (push), keep doing it in this conversation. Merging,
   deploying and sending messages still need my go each time.
 - Use visuals like HTML artifacts or diagrams for complex concepts. Show them inline or attached,
   not as a file path.
@@ -86,8 +86,7 @@ together.
 
 ## Environment rules
 
-- Never touch production or live databases unless explicitly told to. Even then, confirm the action
-  before making it.
+Use production resources freely. Ask before anything destructive that can't be cleanly rolled back.
 
 ## Browser automation
 
