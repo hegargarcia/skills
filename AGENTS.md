@@ -94,4 +94,4 @@ Use production resources freely. Ask before anything destructive that can't be c
 
 ## Council
 
-- Council members: the latest Claude Opus and GPT Sol.
+- Council members: the latest Claude Opus, GPT Sol, and Gemini 4 Neon.
