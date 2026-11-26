@@ -92,6 +92,20 @@ Use production resources freely. Ask before anything destructive that can't be c
 
 - Use `npx agent-browser` for all browser-based tasks unless I tell you otherwise.
 
+## Executor
+
+- External services live in the `executor` MCP server, not their own servers: Slack, Granola,
+  Supabase, Linear, PostHog, Sentry, Cloudflare, Vercel, Customer.io, Fablo and Mobbin. Search
+  Executor before saying you can't reach one of them.
+- Some apps have more than one account. Each call names one with `accountId`, and search lists every
+  account with its label:
+  - `fonzi`: Fonzi work, including Fonzi and Kumospace repos and the Fonzi Slack.
+  - `personal`: everything else.
+  - Any other label, such as Vercel's `hegargarcia`, covers both.
+- Pick the account by label from the task. If it's unclear which one applies, ask.
+- Slack posts as me, with a "Sent using @Hegar AI" footer. Its tools require a `token` input: pass
+  an empty string, and the linked account supplies the real token.
+
 ## Council
 
 - Council members: the latest Claude Opus, GPT Sol, and Gemini 4 Neon.
